@@ -20,7 +20,7 @@ difference() {
         translate([7.5, 52.5, 0]) cube([57.5-7.5, 5, 60]);
         translate([52.5, 7.5, 0]) cube([5, 57.5-7.5, 60]);  
     }
-    translate([2.5, 2.5, 5]) cube([50, 50, 25]);
+    translate([2.25, 2.25, 5]) cube([50.5, 50.5, 25]);
     translate([55, 2.5, 2.5]) cube([27.5, 5, 27.5]);
     translate([2.5, 55, 2.5]) cube([5, 27.5, 27.5]);
     translate([15, 40, 0]) m5csk();
