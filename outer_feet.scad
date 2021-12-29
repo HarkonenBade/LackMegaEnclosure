@@ -7,11 +7,11 @@ module quarter_cylinder(r, h) {
     $fn=128;
     intersection() {
         cylinder(r=r, h=h);
-        cube([r, r, h]);
+        translate([0, 0, -0.05]) cube([r, r, h+0.1]);
     }
 }
 
-
+module outer_foot(){ 
 difference() {
     union() {
         cube([52.5, 52.5, 30]);
@@ -30,3 +30,6 @@ difference() {
     translate([52.5, 27.5, 20]) rotate([0, 90, 0]) m5csk();
     translate([52.5, 27.5, 40]) rotate([0, 90, 0]) m5csk();
 }
+}
+
+outer_foot();
