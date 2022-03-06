@@ -11,7 +11,7 @@ module quarter_cylinder(r, h) {
     }
 }
 
-module centre_foot(){ 
+module base_centre(){ 
     difference() {
         union() {
             translate([-52.75, 0, 0]) cube([105.5, 52.75, 30]);
@@ -28,10 +28,6 @@ module centre_foot(){
         translate([55, 2.5, 2.5]) cube([27.5, 5, 27.5]);
         translate([-55-27.5, 2.5, 2.5]) cube([27.5, 5, 27.5]);
         translate([-9, 55, 2.5]) cube([18, 27.5, 27.5]);
-        translate([15, 40, 0]) m5csk();
-        translate([40, 15, 0]) m5csk();
-        translate([-15, 40, 0]) m5csk();
-        translate([-40, 15, 0]) m5csk();
         translate([27.5, 52.75, 20]) rotate([-90, 0, 0]) m5csk();
         translate([27.5, 52.75, 40]) rotate([-90, 0, 0]) m5csk();
         translate([52.75, 27.5, 20]) rotate([0, 90, 0]) m5csk();
@@ -40,6 +36,30 @@ module centre_foot(){
         translate([-27.5, 52.75, 40]) rotate([-90, 0, 0]) m5csk();
         translate([-52.75, 27.5, 20]) rotate([0, -90, 0]) m5csk();
         translate([-52.75, 27.5, 40]) rotate([0, -90, 0]) m5csk();
+    }
+}
+
+module centre_foot(){ 
+    difference() {
+        base_centre();
+        translate([15, 40, 0]) m5csk();
+        translate([40, 15, 0]) m5csk();
+        translate([27.5, 27.5, 0]) m5csk();
+        translate([-15, 40, 0]) m5csk();
+        translate([-40, 15, 0]) m5csk();
+        translate([-27.5, 27.5, 0]) m5csk();
+    }
+}
+
+module centre_lower_top(){ 
+    rotate([0, 180, 0]) difference() {
+        base_centre();
+        translate([15, 40, 5]) rotate([180, 0, 0]) m5csk();
+        translate([40, 15, 5]) rotate([180, 0, 0]) m5csk();
+        translate([27.5, 27.5, 0]) cylinder(d=5, h=5, $fn=32);
+        translate([-15, 40, 5]) rotate([180, 0, 0]) m5csk();
+        translate([-40, 15, 5]) rotate([180, 0, 0]) m5csk();
+        translate([-27.5, 27.5, 0]) cylinder(d=5, h=5, $fn=32);
     }
 }
 
