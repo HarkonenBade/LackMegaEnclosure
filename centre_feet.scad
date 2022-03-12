@@ -13,47 +13,49 @@ module base_centre(pillar=0){
         translate([55, 2.5, 2.5]) cube([27.5, 3.5, 27.5]);
         translate([-55-27.5, 2.5, 2.5]) cube([27.5, 3.5, 27.5]);
         translate([-4.75, 55, 2.5]) cube([9.5, 27.5, 27.5]);
-        translate([27.5, 50, 16.25+pillar]) rotate([-90, 0, 0]) m5csk();
-        translate([50, 27.5, 16.25+pillar]) rotate([0, 90, 0]) m5csk();
-        translate([-27.5, 50, 16.25+pillar]) rotate([-90, 0, 0]) m5csk();
-        translate([-50, 27.5, 16.25+pillar]) rotate([0, -90, 0]) m5csk();
+        translate([0, 0, 16.25+pillar]) {
+            translate([27.5, 52.5, 0]) rotate([-90, 0, 0]) m5csk();
+            translate([52.5, 27.5, 0]) rotate([0, 90, 0]) m5csk();
+            translate([-27.5, 52.5, 0]) rotate([-90, 0, 0]) m5csk();
+            translate([-52.5, 27.5, 0]) rotate([0, -90, 0]) m5csk();
+        }
     }
 }
 
 module centre_foot(){ 
     difference() {
         base_centre();
-        translate([15, 40, -2.5]) m5csk();
-        translate([40, 15, -2.5]) m5csk();
-        translate([27.5, 27.5, -2.5]) m5csk();
-        translate([-15, 40, -2.5]) m5csk();
-        translate([-40, 15, -2.5]) m5csk();
-        translate([-27.5, 27.5, -2.5]) m5csk();
+        translate([15, 40, 0]) m5csk();
+        translate([40, 15, 0]) m5csk();
+        translate([27.5, 27.5, 0]) m5csk();
+        translate([-15, 40, 0]) m5csk();
+        translate([-40, 15, 0]) m5csk();
+        translate([-27.5, 27.5, 0]) m5csk();
     }
 }
 
 module centre_lower_top(){ 
     difference() {
         rotate([0, 180, 0]) base_centre();
-        translate([15, 40, -5]) m5csk();
-        translate([40, 15, -5]) m5csk();
-        translate([27.5, 27.5, -5]) m5bore();
-        translate([-15, 40, -5])  m5csk();
-        translate([-40, 15, -5]) m5csk();
-        translate([-27.5, 27.5, -5]) m5bore();
+        translate([15, 40, -2.5]) m5csk();
+        translate([40, 15, -2.5]) m5csk();
+        translate([27.5, 27.5, 0]) rotate([180, 0, 0]) m5bore();
+        translate([-15, 40, -2.5])  m5csk();
+        translate([-40, 15, -2.5]) m5csk();
+        translate([-27.5, 27.5, 0]) rotate([180, 0, 0]) m5bore();
     }
 }
 
 module centre_upper_top(){ 
     difference() {
         rotate([0, 180, 0]) base_centre(pillar=100);
-        translate([15, 40, -105]) m5csk(recess=100);
-        translate([40, 15, -105]) m5csk(recess=100);
-        translate([27.5, 27.5, -105]) m5bore(h=105);
-        translate([-15, 40, -105]) m5csk(recess=100);
-        translate([-40, 15, -105]) m5csk(recess=100);
-        translate([-27.5, 27.5, -105]) m5bore(h=105);
+        translate([15, 40, -102.5]) m5csk(recess=100);
+        translate([40, 15, -102.5]) m5csk(recess=100);
+        translate([27.5, 27.5, 0]) rotate([180, 0, 0]) m5bore(h=105);
+        translate([-15, 40, -102.5]) m5csk(recess=100);
+        translate([-40, 15, -102.5]) m5csk(recess=100);
+        translate([-27.5, 27.5, 0]) rotate([180, 0, 0]) m5bore(h=105);
     }
 }
 
-centre_upper_top();
+centre_foot();

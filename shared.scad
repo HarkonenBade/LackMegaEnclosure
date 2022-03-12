@@ -2,15 +2,18 @@
 // h - length of the drill bore including csk
 // csk - diameter of the csk
 // recess - recess of the csk, added above the csk
-module m5csk(h=5, csk=10, recess=0) {
+module m5csk(h=2.5, csk=10, recess=0) {
     m5bore(h=h);
-    translate([0, 0, -(csk/2 - h)]) cylinder(d2=csk, d1=0, h=(csk/2), $fn=32);
+    intersection() {
+        translate([0, 0, -(csk/2 - h)]) cylinder(d2=csk, d1=0, h=(csk/2), $fn=32);
+        cylinder(d=csk, h=h, $fn=32);
+    }
     translate([0, 0, h]) cylinder(h=recess, d=csk);
 }
 
 // M5 clearance bore
 // h - length of the bore
-module m5bore(h=5) {
+module m5bore(h=2.5) {
     cylinder(d=5.5, h=h, $fn=32);
 }
 
