@@ -1,3 +1,4 @@
+include <./shared.scad>;
 use <./outer_feet.scad>;
 use <./centre_feet.scad>;
 
@@ -10,7 +11,7 @@ module lack(top_loft=0){
     }
 }
 
-translate([0, 0, 9]) {
+translate([0, 0, CENTRE_PANEL_THICK]) {
     for(x=[0, 550]) {
         translate([x, 0, 2.5]) color("grey") lack(top_loft=2.5);
         translate([x, 0, 457.5]) color("grey") lack(top_loft=102.5);
@@ -49,18 +50,18 @@ translate([0, 0, 9]) {
     }
     color("tan") {
         for(x=[2.5, 1092.5]) {
-            translate([x, 52.5, 0]) cube([3, 445, 405]);
-            translate([x, 52.5, 455]) cube([3, 445, 505]);
+            translate([x, 52.5, 0]) cube([SIDE_PANEL_THICK, 445, 405]);
+            translate([x, 52.5, 455]) cube([SIDE_PANEL_THICK, 445, 505]);
         }
 
         for(x=[52.5, 602.5]) {
-            translate([x, 542.5, 0]) cube([445, 3, 405]);
-            translate([x, 542.5, 455]) cube([445, 3, 505]);
+            translate([x, 542.5, 0]) cube([445, SIDE_PANEL_THICK, 405]);
+            translate([x, 542.5, 455]) cube([445, SIDE_PANEL_THICK, 505]);
         }
     
-        translate([550-4.5, 52.5, 0]) cube([9, 445, 405]);
-        translate([550-4.5, 52.5, 455]) cube([9, 445, 505]);
+        translate([550-4.5, 52.5, 0]) cube([CENTRE_PANEL_THICK, 445, 405]);
+        translate([550-4.5, 52.5, 455]) cube([CENTRE_PANEL_THICK, 445, 505]);
     }
 }
-color("tan") cube([1100, 550, 9]);
+color("tan") cube([1100, 550, CENTRE_PANEL_THICK]);
 

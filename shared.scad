@@ -1,14 +1,20 @@
+SIDE_PANEL_THICK=3;
+CENTRE_PANEL_THICK=9.5;
+PILLAR_HEIGHT=100;
+
+SIDE_PANEL_CLEAR=SIDE_PANEL_THICK+0.5;
+CENTRE_PANEL_CLEAR=CENTRE_PANEL_THICK+0.5;
+
 // M5 CSK fitting 90deg bevel
 // h - length of the drill bore including csk
 // csk - diameter of the csk
 // recess - recess of the csk, added above the csk
 module m5csk(h=2.5, csk=10, recess=0) {
     m5bore(h=h);
-    intersection() {
-        translate([0, 0, -(csk/2 - h)]) cylinder(d2=csk, d1=0, h=(csk/2), $fn=32);
-        cylinder(d=csk, h=h, $fn=32);
+    translate([0, 0, -(csk/2 - h)]) cylinder(d2=csk, d1=0, h=(csk/2), $fn=32);
+    if(recess != 0) {
+        translate([0, 0, h]) cylinder(h=recess, d=csk);
     }
-    translate([0, 0, h]) cylinder(h=recess, d=csk);
 }
 
 // M5 clearance bore
