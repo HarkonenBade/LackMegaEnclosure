@@ -1,9 +1,11 @@
 SIDE_PANEL_THICK=3;
-CENTRE_PANEL_THICK=9.5;
+CENTRE_PANEL_THICK=9;
 PILLAR_HEIGHT=100;
+CLEAR = 0.5;
+SLOT_WALL = 2.5;
 
-SIDE_PANEL_CLEAR=SIDE_PANEL_THICK+0.5;
-CENTRE_PANEL_CLEAR=CENTRE_PANEL_THICK+0.5;
+SIDE_PANEL_SLOT=SIDE_PANEL_THICK+CLEAR+SLOT_WALL*2;
+CENTRE_PANEL_SLOT=CENTRE_PANEL_THICK+CLEAR+SLOT_WALL*2;
 
 // M5 CSK fitting 90deg bevel
 // h - length of the drill bore including csk
@@ -21,6 +23,23 @@ module m5csk(h=2.5, csk=10, recess=0) {
 // h - length of the bore
 module m5bore(h=2.5) {
     cylinder(d=5.5, h=h, $fn=32);
+}
+
+// M5 clearance bore with retaining nut
+// h - length of the bore
+module m5nutbore(h=20, nuth=5) {
+    cylinder(d=5.5, h=h, $fn=32);
+    translate([0, 0, nuth]) cylinder(d=9, h=4, $fn=6, center=true);
+}
+
+module slot_holder(panel, hole=true) {
+    difference() {
+        quarter_cylinder(r=30, h=(panel+CLEAR+SLOT_WALL*2));
+        translate([2.5, 2.5, SLOT_WALL]) cube([30, 30, panel+CLEAR]);
+        if(hole){
+            translate([12.5, 12.5, 0]) cylinder(d=2.5, h=SLOT_WALL, $fn=32);
+        }
+    }
 }
 
 module quarter_cylinder(r, h) {
