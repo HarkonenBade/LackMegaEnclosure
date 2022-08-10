@@ -2,6 +2,7 @@ include <./shared.scad>;
 use <./outer_feet.scad>;
 use <./centre_feet.scad>;
 use <./door_assembly.scad>;
+use <./foot.scad>;
 
 module lack(top_loft=0, legs=true){
     translate([0, 0, 400+top_loft]) cube([550, 550, 50]);
@@ -83,8 +84,17 @@ translate([0, 0, 50]) {
         rotate([90,0,0])
         doorass();
 }
+
 color("grey") {
     translate([0, 0, -400]) lack(top_loft=0, legs=false);
     translate([550, 0, -400]) lack(top_loft=0, legs=false);
+}
+
+color("orange") {
+    for(x=[0, 495, 550, 1045]){
+        for(y=[0, 495]){
+            translate([x, y, -30]) foot();
+        }
+    }
 }
 
