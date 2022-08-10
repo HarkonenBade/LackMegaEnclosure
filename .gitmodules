@@ -1,0 +1,3 @@
+[submodule "parametric_hinge.git"]
+	path = parametric_hinge
+	url = git@github.com:HarkonenBade/parametric_hinge.git

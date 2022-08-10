@@ -32,6 +32,20 @@ module m5nutbore(h=20, nuth=5) {
     translate([0, 0, nuth]) cylinder(d=9, h=4, $fn=6, center=true);
 }
 
+// M4 clearance bore with retaining nut
+// h - length of the bore
+module m4nutbore(h=20, nuth=5) {
+    cylinder(d=4.5, h=h, $fn=32);
+    translate([0, 0, nuth]) cylinder(d=8.5, h=3.5, $fn=6, center=true);
+}
+
+module rrect(x, y, z, r) {
+    linear_extrude(z)
+    offset(r=r)
+    offset(delta=-r)
+    square([x, y]);
+}
+
 module slot_holder(panel, hole=true) {
     difference() {
         quarter_cylinder(r=30, h=(panel+CLEAR+SLOT_WALL*2));
