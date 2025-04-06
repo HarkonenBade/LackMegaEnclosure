@@ -1,11 +1,17 @@
 include <./shared.scad>;
 
-module base_centre(pillar=0){ 
+module base_centre(pillar=0, tabs=true){ 
     difference() {
         union() {
             translate([-55, 0, 0]) cube([110, 55, 30+pillar]);
-            translate([52.75, SIDE_PANEL_SLOT, 0]) rotate([90, 0, 0]) slot_holder(SIDE_PANEL_THICK);
-            translate([-52.75, SIDE_PANEL_SLOT, 0]) rotate([90, -90, 0]) slot_holder(SIDE_PANEL_THICK); 
+            if(tabs){
+                translate([52.75, SIDE_PANEL_SLOT, 0])
+                    rotate([90, 0, 0])
+                    slot_holder(SIDE_PANEL_THICK);
+                translate([-52.75, SIDE_PANEL_SLOT, 0]) 
+                    rotate([90, -90, 0])
+                    slot_holder(SIDE_PANEL_THICK); 
+            }
             translate([CENTRE_PANEL_SLOT/2, 52.5, 0]) rotate([0, -90, 0]) slot_holder(CENTRE_PANEL_THICK, hole=false);
         }
         translate([2.25, 2.25, 2.5+pillar]) cube([50.5, 50.5, 27.5]);
@@ -19,9 +25,9 @@ module base_centre(pillar=0){
     }
 }
 
-module centre_foot(){ 
+module centre_foot(tabs=true){ 
     difference() {
-        base_centre();
+        base_centre(tabs=tabs);
         translate([15, 40, 0]) m5csk();
         translate([40, 15, 0]) m5csk();
         translate([27.5, 27.5, 0]) m5csk();
@@ -31,9 +37,9 @@ module centre_foot(){
     }
 }
 
-module centre_lower_top(){ 
+module centre_lower_top(tabs=true){ 
     difference() {
-        rotate([0, 180, 0]) base_centre();
+        rotate([0, 180, 0]) base_centre(tabs=tabs);
         translate([15, 40, -2.5]) m5csk();
         translate([40, 15, -2.5]) m5csk();
         translate([27.5, 27.5, 0]) rotate([180, 0, 0]) m5bore();
@@ -55,4 +61,4 @@ module centre_upper_top(){
     }
 }
 
-centre_upper_top();
+centre_foot();

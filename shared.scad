@@ -29,7 +29,14 @@ module m5bore(h=2.5) {
 // h - length of the bore
 module m5nutbore(h=20, nuth=5) {
     cylinder(d=5.5, h=h, $fn=32);
-    translate([0, 0, nuth]) cylinder(d=9, h=4, $fn=6, center=true);
+    translate([0, 0, nuth]) union() {
+        cylinder(d=9.2, h=4.4, $fn=6, center=true);
+        difference() {
+            translate([0, 0, -0.2]) cylinder(d=9.2, h=4.6, $fn=6, center=true);
+            translate([0, 0, -0.4]) cube([9.2, 5.5, 4.8], center=true);    
+        }
+        translate([0, 0, -0.4]) cube([5.5, 5.5, 4.8], center=true);
+    }
 }
 
 // M4 clearance bore with retaining nut

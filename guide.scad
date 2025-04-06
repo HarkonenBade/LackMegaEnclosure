@@ -37,4 +37,17 @@ module corner() {
     }
 }
 
-corner();
+module corner_top() {
+    difference() {
+        union() {
+            cube([150, 50, 3]);
+            translate([130, -3, 0]) cube([20, 3, 13]);
+            translate([-3, 30, 0]) cube([3, 20, 13]);
+        }
+        cube([130, 3, 3]);
+        cube([3, 30, 3]);
+        translate([20, 20, 0]) cube([130, 30, 3]);
+    }
+}
+
+corner_top();

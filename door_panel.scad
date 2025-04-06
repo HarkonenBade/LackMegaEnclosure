@@ -8,18 +8,9 @@ module hinge_drill() {
     }
 }
 
-cutout_w = 295;
-cutout_h = 355;
-cutout_r = 25;
-cutout_x = 75;
-cutout_y = 75;
-
 seal_w = 10;
 
-panel_w = 445;
-panel_h = 505;
-
-module door_panel(){
+module door_panel(panel_w, panel_h, cutout_x, cutout_y, cutout_w, cutout_h, cutout_r){
     difference() {
         cube([panel_w, panel_h, 3]);
         
@@ -69,4 +60,23 @@ module door_panel(){
     }
 }
 
-projection() door_panel();
+tall = false;
+if(tall){
+    projection() door_panel(
+        cutout_w = 295,
+        cutout_h = 355,
+        cutout_r = 25,
+        cutout_x = 75,
+        cutout_y = 75,
+        panel_w = 445,
+        panel_h = 505);
+} else {
+    projection() door_panel(
+        cutout_w = 295,
+        cutout_h = 255,
+        cutout_r = 25,
+        cutout_x = 75,
+        cutout_y = 75,
+        panel_w = 445,
+        panel_h = 405);
+}

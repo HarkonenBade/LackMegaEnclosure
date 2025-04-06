@@ -22,26 +22,26 @@ translate([0, 0, 50]) {
                 for(x=[0, 1100]){
                     translate([x, y, z])
                         mirror([x, y*2, 0])
-                        outer_foot();
+                        outer_foot(right=!(z==0&&y==0));
                 }
             
                 translate([550, y, z])
                     mirror([0, y, 0])
-                    centre_foot();
+                    centre_foot(tabs=!(z==0&&y==0));
             }
         }
         for(y=[0, 550]){
             for(x=[0, 1100]){
                 translate([x, y, 405])
                     mirror([x, y*2, 0])
-                    outer_lower_top();
+                    outer_lower_top(left=(y!=0));
                 translate([x, y, 965])
                     mirror([x, y*2, 0])
                     outer_upper_top();
             }
             translate([550, y, 405])
                     mirror([0, y, 0])
-                    centre_lower_top();
+                    centre_lower_top(tabs=(y!=0));
             translate([550, y, 965])
                     mirror([0, y, 0])
                     centre_upper_top();
@@ -93,8 +93,11 @@ color("grey") {
 color("orange") {
     for(x=[0, 495, 550, 1045]){
         for(y=[0, 495]){
-            translate([x, y, -30]) foot();
+            translate([x, y, -30]) foot(wide=false);
         }
+    }
+    for(y=[0, 495]) {
+        translate([495, y, -30]) foot(wide=true);
     }
 }
 
